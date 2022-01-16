@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package kampus.videoapi;
+option go_package = "/rpc/video-api";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service VideoAPI {
+  rpc GetVideo(GetVideoRequest) returns (Video);
+  rpc CreateVideo(CreateVideoRequest) returns (Video);
+  rpc UpdateVideo(UpdateVideoRequest) returns (google.protobuf.Empty);
+  rpc DeleteVideo(DeleteVideoRequest) returns (google.protobuf.Empty);
+}
+
+// Video Start
+message GetVideoRequest {
+  string ID = 1;
+}
+
+message CreateVideoRequest {
+  string user_id = 1;
+  string name = 2;
+  string URI = 3;
+}
+
+message UpdateVideoRequest {
+  string ID = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue URI = 3;
+}
+
+message DeleteVideoRequest {
+  string ID = 1;
+}
+
+message Video {
+  string ID = 1;
+  string user_id = 2;
+  string name = 3;
+  string URI = 4;
+  string slug = 5;
+}
+// Video End
