@@ -11,6 +11,7 @@ type Backender interface {
 	CreateVideo(ctx context.Context, userID string, name string, URI string) (*models.Video, error)
 	UpdateVideo(ctx context.Context, id string, name *string, URI *string) error
 	DeleteVideo(ctx context.Context, id string) error
+	GetBatchVideos(ctx context.Context, ids []string) ([]*models.Video, error)
 }
 
 type PostgreSQLBackend struct {
