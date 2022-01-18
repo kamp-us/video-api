@@ -11,9 +11,9 @@ service VideoAPI {
   rpc CreateVideo(CreateVideoRequest) returns (Video);
   rpc UpdateVideo(UpdateVideoRequest) returns (google.protobuf.Empty);
   rpc DeleteVideo(DeleteVideoRequest) returns (google.protobuf.Empty);
+  rpc GetBatchVideos(GetBatchVideosRequest) returns (GetBatchVideosResponse);
 }
 
-// Video Start
 message GetVideoRequest {
   string ID = 1;
 }
@@ -34,6 +34,15 @@ message DeleteVideoRequest {
   string ID = 1;
 }
 
+
+message GetBatchVideosRequest {
+  repeated string ids = 1;
+}
+
+message GetBatchVideosResponse {
+  repeated Video videos = 1;
+}
+
 message Video {
   string ID = 1;
   string user_id = 2;
@@ -41,4 +50,3 @@ message Video {
   string URI = 4;
   string slug = 5;
 }
-// Video End
